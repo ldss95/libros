@@ -1,0 +1,61 @@
+<div id="book_container">
+    <form @submit='create'>
+        <h2>Nuevo Libro</h2>
+        <br>
+
+        <label>Nombre</label>
+        <input type="text" v-model="book.title">
+        <br>
+
+        <label>Descripcion</label>
+        <textarea v-model="book.description" cols="30" rows="10"></textarea>
+        <br>
+
+        <label>Año de publicacion</label>
+        <input type="number" v-model="book.publication_year">
+        <br>
+        
+        <label>Autor</label>
+        <select v-model="book.author">
+            <option v-for="author in authors" :value="author.id" v-text="author.name"></option>
+        </select>
+        <br>
+
+        <a href="/home">Atras</a>
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+<script>
+     new Vue({
+        el: '#book_container',
+        data: {
+            book: {},
+            authors: []
+        },
+        mounted(){
+            axios.get('/books/authors')
+                .then(res => this.authors = res.data)
+        },
+        methods: {
+            create(event){
+                event.preventDefault()
+                axios.post('/books', this.book)
+                    .then(() => {
+                        swal.fire({
+                            title: 'Libro creado',
+                            text: 'Desea crear otro libro?',
+                            type: 'success',
+                            confirmButtonText: 'Si',
+                            showCancelButton: true,
+                            cancelButtonText: 'No'
+                        }).then(result => {
+                            if(result.value)
+                                this.book = {}
+                            else
+                                window.location.href = '/home'
+                        })
+                    }).catch(error => swal.fire('Error', 'No se ha podido crear tu libro', 'error'))
+            }
+        }
+    })
+</script>

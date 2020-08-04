@@ -1,0 +1,68 @@
+<div id="login_container">
+    <form @submit="signup">
+        <h2>Registrar Nuevo Usuario</h2>
+        <br>
+
+        <label>Nombre Completo</label>
+        <input type="text" required v-model="name">
+        <br>
+        <br>
+
+        <label>Correo Electronico</label>
+        <br>
+        <input type="email" v-model="email" required>
+        <br>
+        <br>
+
+        <label>Contraseña</label>
+        <input type="password" v-model="password" required>
+        <br>
+        <br>
+
+        <a href='/login'>Iniciar Sesion</a>
+        <button type="submit">Registrarme</button>
+    </form>
+</div>
+<script>
+    new Vue({
+        el: '#login_container',
+        data: {
+            email: '',
+            password: '',
+            name: ''
+        },
+        methods: {
+            signup(event){
+                event.preventDefault()
+                axios.post('/auth/signup', {
+                    email: this.email,
+                    password: this.password,
+                    name: this.name
+                }).then(res => {
+                    if(res.data.created)
+                        swal.fire({
+                            title: 'Usuario creado',
+                            text: 'Ya puede iniciar sesion',
+                            type: 'success',
+
+                        }).then(() => {
+                            window.location.href = '/login'
+                        })
+                    else{
+                        seal.fire(
+                            'Oops!',
+                            res.data.toString(),
+                            'warning'
+                        )
+                    }
+                }).catch(error => {
+                    swal.fire(
+                        'Error',
+                        error.toString(),
+                        'error'
+                    )
+                })
+            }
+        }
+    })
+</script>

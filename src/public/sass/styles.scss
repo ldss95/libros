@@ -1,0 +1,158 @@
+@font-face{
+    font-family: Recursive;
+    src: url(/fonts/Recursive.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: absolute;
+    min-height: 100%;
+    font-family: Recursive;
+}
+
+#login_container, #book_container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    form {
+        width: 300px;
+        padding: 30px;
+        background: #3478ff;
+        color: #fff;
+        h2 {
+            text-align: center;
+            margin: 0;
+        }
+        label {
+            width: 100%;
+        }
+        input, textarea, select {
+            background: transparent;
+            border: solid 2px #fff;
+            color: #fff;
+            padding: 10px 15px;
+            margin-top: 5px;
+            width: calc(100% - 34px);
+            margin-bottom: 30px;
+        }
+        select{
+            width: 100%;
+        }
+        button,
+        a {
+            text-decoration: none;
+            padding: 10px 15px;
+            background: #82acff;
+            border: none;
+            /*
+            background: transparent;
+            */
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            &:hover {
+                background: #fff;
+                color: #3478ff;
+            }
+        }
+        button {
+            float: right;
+        }
+        a {
+            float: left;
+        }
+    }
+}
+
+header {
+    background: #3478ff;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .left,
+    .right {
+        display: flex;
+        padding: 15px;
+    }
+    .right {
+        justify-content: flex-end;
+        align-items: center;
+        button, a {
+            background: transparent;
+            text-decoration: none;
+            border: solid 2px #fff;
+            color: #fff;
+            margin: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: ease all .3s;
+            &:hover {
+                background: #fff;
+                color: #3478ff;
+            }
+        }
+    }
+    .left {
+        color: #fff;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
+
+#main {
+    padding: 30px 60px;
+    text-align: center;
+    h2 {
+        font-size: 36px;
+    }
+}
+
+.libros {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    .libro {
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+        justify-content: space-between;
+        padding: 15px;
+        background: rgba(0, 0, 0, .5);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .4);
+        margin: 15px;
+        width: 200px;
+        .votar_container {
+            display: flex;
+            justify-content: space-around;
+            h4 {
+                cursor: pointer;
+                color: #fff;
+                border: solid 2px #fff;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                transition: ease all .3s;
+                &:hover {
+                    background: #fff;
+                    color: #3478ff;
+                }
+                &.active {
+                    background: #fff;
+                    color: #3478ff;
+                }
+            }
+        }
+    }
+}

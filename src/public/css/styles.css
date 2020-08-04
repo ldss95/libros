@@ -1,0 +1,162 @@
+@font-face {
+  font-family: Recursive;
+  src: url(/fonts/Recursive.ttf);
+}
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  min-height: 100%;
+  font-family: Recursive;
+}
+
+#login_container, #book_container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#login_container form, #book_container form {
+  width: 300px;
+  padding: 30px;
+  background: #3478ff;
+  color: #fff;
+}
+#login_container form h2, #book_container form h2 {
+  text-align: center;
+  margin: 0;
+}
+#login_container form label, #book_container form label {
+  width: 100%;
+}
+#login_container form input, #login_container form textarea, #login_container form select, #book_container form input, #book_container form textarea, #book_container form select {
+  background: transparent;
+  border: solid 2px #fff;
+  color: #fff;
+  padding: 10px 15px;
+  margin-top: 5px;
+  width: calc(100% - 34px);
+  margin-bottom: 30px;
+}
+#login_container form select, #book_container form select {
+  width: 100%;
+}
+#login_container form button,
+#login_container form a, #book_container form button,
+#book_container form a {
+  text-decoration: none;
+  padding: 10px 15px;
+  background: #82acff;
+  border: none;
+  /*
+  background: transparent;
+  */
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+#login_container form button:hover,
+#login_container form a:hover, #book_container form button:hover,
+#book_container form a:hover {
+  background: #fff;
+  color: #3478ff;
+}
+#login_container form button, #book_container form button {
+  float: right;
+}
+#login_container form a, #book_container form a {
+  float: left;
+}
+
+header {
+  background: #3478ff;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+header .left,
+header .right {
+  display: flex;
+  padding: 15px;
+}
+header .right {
+  justify-content: flex-end;
+  align-items: center;
+}
+header .right button, header .right a {
+  background: transparent;
+  text-decoration: none;
+  border: solid 2px #fff;
+  color: #fff;
+  margin: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: ease all 0.3s;
+}
+header .right button:hover, header .right a:hover {
+  background: #fff;
+  color: #3478ff;
+}
+header .left {
+  color: #fff;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#main {
+  padding: 30px 60px;
+  text-align: center;
+}
+#main h2 {
+  font-size: 36px;
+}
+
+.libros {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.libros .libro {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  justify-content: space-between;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  margin: 15px;
+  width: 200px;
+}
+.libros .libro .votar_container {
+  display: flex;
+  justify-content: space-around;
+}
+.libros .libro .votar_container h4 {
+  cursor: pointer;
+  color: #fff;
+  border: solid 2px #fff;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: ease all 0.3s;
+}
+.libros .libro .votar_container h4:hover {
+  background: #fff;
+  color: #3478ff;
+}
+.libros .libro .votar_container h4.active {
+  background: #fff;
+  color: #3478ff;
+}
+
+/*# sourceMappingURL=styles.css.map */

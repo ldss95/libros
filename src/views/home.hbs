@@ -1,0 +1,83 @@
+<main id="app">
+    <header>
+        <div class="left">
+            <h3 v-text="session.nombre"></h3>
+        </div>
+        <div class="right">
+            <a href="/create">Nuevo Libro</a>
+            <button type="button" @click='logout'>Cerrar Sesion</button>
+        </div>
+    </header>
+
+    <section id="main">
+        <h2>Libros Recientes</h2>
+        <br>
+        <ul class="libros">
+            <li class="libro" v-for="book in books">
+                <h3 v-text="book.title"></h3>
+                <p v-text="'Autor: ' + book.authorName"></p>
+                <div class="votar_container">
+                    <h4
+                        :class="{ active: book.calification == -1, menos: true }"
+                        @click="vote(book.id, 'dislike')"
+                    >-1</h4>
+                    <h4
+                        :class="{ active: book.calification == 1, mas: true }"
+                        @click="vote(book.id, 'like')"
+                    >+1</h4>
+                </div>
+            </li>
+        </ul>
+    </section>
+</main>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            books: [],
+            session: {
+                name: ''
+            }
+        },
+        mounted(){
+            this.getBooks()
+
+            axios.get('/auth/session')
+            .then(res => {
+                this.session = JSON.parse(res.data)
+            }).catch(error => {
+                swal.fire(
+                    'Oops!',
+                    'No fue posible obtener los datos de la sesion',
+                    'warning'
+                )
+            })
+        },
+        methods: {
+            getBooks(){
+                axios.get('/books')
+                    .then(res => this.books = res.data)
+                    .catch(error => {
+                        swal.fire(
+                            'Error',
+                            'No se pudo obtener la informacion de los libros',
+                            'error'
+                        )
+                    })
+            },
+            logout: () => {
+                axios.post('/auth/logout')
+                    .then(res => window.location.href = '/')
+                    .catch(error => swal.fire('Error', 'No se pudo cerrar la sesion.', 'error'))
+            },
+            vote(id, type){
+                axios.post(`/books/${type}`, { book: id })
+                    .then(() => this.getBooks())
+                    .catch((error) => {
+                        alert(error)
+                        swal.fire('Error', 'No se pudo guardar la informacion', 'error')
+                    })
+            }
+        }
+    })
+</script>
