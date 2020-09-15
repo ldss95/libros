@@ -19,11 +19,11 @@
                 <div class="votar_container">
                     <h4
                         :class="{ active: book.calification == -1, menos: true }"
-                        @click="vote(book.id, 'dislike')"
+                        @click="vote(book.id, -1)"
                     >-1</h4>
                     <h4
                         :class="{ active: book.calification == 1, mas: true }"
-                        @click="vote(book.id, 'like')"
+                        @click="vote(book.id, 1)"
                     >+1</h4>
                 </div>
             </li>
@@ -70,8 +70,8 @@
                     .then(res => window.location.href = '/')
                     .catch(error => swal.fire('Error', 'No se pudo cerrar la sesion.', 'error'))
             },
-            vote(id, type){
-                axios.post(`/books/${type}`, { book: id })
+            vote(id, calification){
+                axios.post(`/votes`, { book: id, calification })
                     .then(() => this.getBooks())
                     .catch((error) => {
                         alert(error)

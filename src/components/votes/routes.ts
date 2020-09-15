@@ -4,7 +4,6 @@ const routes: Router = Router()
 import controller from './controller'
 
 routes.route('/')
-	.get(controller.getAll)
-	.post(controller.create)
+	.post(controller.vote)
 
 export default routes

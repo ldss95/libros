@@ -1,4 +1,17 @@
 import path from 'path'
-const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database(path.join(__dirname, 'db.db'))
-export default db
+
+import { Sequelize } from 'sequelize'
+
+const sequelize = new Sequelize({
+	dialect: 'sqlite',
+	dialectOptions: {
+		dateStrings: true,
+		typeCast: true
+	},
+	storage: path.join(__dirname, 'db.db'),
+	logging: false
+})
+
+//sequelize.sync({ alter: true, force: true })
+
+export { sequelize }

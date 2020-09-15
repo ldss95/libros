@@ -2,6 +2,8 @@ import { Router, Request, Response, NextFunction } from 'express'
 const routes: Router = Router()
 
 import users from './components/users/routes'
+import votes from './components/votes/routes'
+import authors from './components/authors/routes'
 import books from './components/books/routes'
 import authRoutes from './components/auth/routes'
 import authController from './components/auth/controller'
@@ -27,6 +29,8 @@ routes.get('/create', authController.isLoggedIn, (req: Request, res: Response) =
 })
 
 routes.use('/users', users)
+routes.use('/votes', votes)
+routes.use('/authors', authors)
 routes.use('/books', books)
 routes.use('/auth', authRoutes)
 
